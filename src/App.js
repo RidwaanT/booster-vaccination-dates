@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Availability from './Components/Availability';
+
+async function apiFetch(url){
+  let response = await fetch(url);
+  if (!response.ok){
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  let data = await response.json();
+  return JSON.stringify(data);
+}
+
+let slots = apiFetch("https://hamilton.vertoengage.com/engage/api/api/cac-open-clinic/v1/slots/availability?day=2021-12-27T00:00:00.000-05:00&location_id=SH&slot_type=AGE12YEARSPLUS1ST2NDANDELIGIBLE3RDDOSEPOPULATIONSCOVID19VACCINE&key=hamilton-booking")
+
 
 function App() {
   return (
-    // <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="App">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Vaccination App
+          {slots}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    // </div>
+     </div>
   );
 }
+
+
 
 export default App;

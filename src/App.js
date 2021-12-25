@@ -9,7 +9,7 @@ async function apiFetch(url){
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   let data = await response.json();
-  return JSON.stringify(data);
+  return data;
 }
 
 
@@ -29,8 +29,9 @@ function App() {
     <div className="App">
         <p>
           Vaccination App
-          {slots}
+          {/* {slots} */}
         </p>
+        <Availability></Availability>
      </div>
   );
 }

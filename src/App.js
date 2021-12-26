@@ -15,16 +15,7 @@ async function apiFetch(url){
 
 
 function App() {
-  const [slots, setSlots] = useState([]);
-
-
-  useEffect(() => {
-    let mounted = true;
-    apiFetch("https://hamilton.vertoengage.com/engage/api/api/cac-open-clinic/v1/slots/availability?day=2021-12-27T00:00:00.000-05:00&location_id=SH&slot_type=AGE12YEARSPLUS1ST2NDANDELIGIBLE3RDDOSEPOPULATIONSCOVID19VACCINE&key=hamilton-booking").then(
-      items=>{if(mounted){setSlots(items)}}
-    )
-    return () => mounted = false;
-  }, [])
+  
   return (
     <div className="App">
         <p>

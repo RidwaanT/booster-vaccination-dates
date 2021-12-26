@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import{apiFetch} from '../Services/getSlotsInformation';
+import{apiFetch} from '../Services/getAPIData';
+import { getSlotCount } from '../Services/getSlotCount';
 
 
 // async function apiFetch(url){
@@ -14,17 +15,17 @@ export default function Availability() {
     const [slotsInformation, setSlotsInformation] = useState({});
         
     useEffect(()=>{
-        apiFetch("https://hamilton.vertoengage.com/engage/api/api/cac-open-clinic/v1/slots/availability?day=2021-12-27T00:00:00.000-05:00&location_id=SH&slot_type=AGE12YEARSPLUS1ST2NDANDELIGIBLE3RDDOSEPOPULATIONSCOVID19VACCINE&key=hamilton-booking").then(
-            data => setSlotsInformation(data));
-            console.log(slotsInformation)
-    }, [])
+        getSlotCount('07', '01', '2022', "SJHH-West 5th", "12 y/o plus").then(
+        data => setSlotsInformation(data));
+        console.log(slotsInformation)
+    }, )
     
     
     return (
             <div>
-                <h2> Slots Information: {slotsInformation.slots_left}</h2>
+                <h2> Slots Information: </h2>
                 <ul>
-                    <li></li>
+                    <li>{slotsInformation.slots_left}</li>
                 </ul>
             </div>
         )

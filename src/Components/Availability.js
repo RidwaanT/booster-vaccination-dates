@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import{apiFetch} from '../Services/getAPIData';
 import { getSlotCount } from '../Services/getSlotCount';
 
 
@@ -13,12 +12,11 @@ import { getSlotCount } from '../Services/getSlotCount';
 //   }
 export default function Availability() {
     const [slotsInformation, setSlotsInformation] = useState({});
-        
+    
     useEffect(()=>{
         getSlotCount('07', '01', '2022', "SJHH-West 5th", "12 y/o plus").then(
         data => setSlotsInformation(data));
-        console.log(slotsInformation)
-    }, )
+    }, [])
     
     
     return (

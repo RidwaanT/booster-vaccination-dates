@@ -12,7 +12,7 @@ import{apiFetch} from '../Services/getAPIData';
  */
 export async function getSlotCount(dd, mm, yyyy, location, slotType){
   let date = `${yyyy}-${mm}-${dd}T00:00:00.000-05:00`;
-  let locationID = Constants.clinics[location];
+  let locationID = Constants.clinicCodes[location];
   let slot_type = Constants.slotTypes[slotType];
   let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`
 

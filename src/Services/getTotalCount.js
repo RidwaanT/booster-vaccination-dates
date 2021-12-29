@@ -28,10 +28,12 @@ export async function getTotalCount(dd, mm, yyyy, slotType){
     let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`; // Creates query from our data.
     let data = await apiFetch(query); // returns JSON file from our query note: If server is busy we can get an error because of an HTML return.
     // console.log(data); debugging purposes
-    // console.log("The amount of slots for " + Constants.clinics[index] +" is: " + data.slots_left); Debugging purposes
+    
+    console.log(data)// console.log("The amount of slots for " + Constants.clinics[index] +" is: " + data.slots_left); Debugging purposes
     totalCount = totalCount + parseInt(data.slots_left); // we parseInt to get integer not sure if necessary will test with out
   }
 
   console.log("The total count to return: " + totalCount)
+  console.log(totalCount)
   return totalCount;
   }

@@ -11,33 +11,27 @@ import{apiFetch} from '../Services/getAPIData';
  * @returns The number of slots available.
  */
 export async function getTotalCount(dd, mm, yyyy, slotType){
-  let date = `${yyyy}-${mm}-${dd}T00:00:00.000-05:00`;
-  
-  let slot_type = Constants.slotTypes[slotType];
+  let date = `${yyyy}-${mm}-${dd}T00:00:00.000-05:00`; // This date format is what is used in the API query
+  let slot_type = Constants.slotTypes[slotType][0]; // This is the slot type
   var totalCount = 0;
 
+  /**
+   * This for loop gets the total count for all available slots
+   */
   for(let index = 0; index<Constants.clinics.length; index++ ){
-    var locationID = await Constants.clinicCodes[Constants.clinics[index]];
-    let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`;
-    let data = await apiFetch(query);
-    console.log(data);
-    console.log("The amount of slots for " + Constants.clinics[index] +" is: " + data.slots_left);
-    totalCount = totalCount + parseInt(data.slots_left);
+    //var clinicName =Constants.clinics[index]; // Gets the clinic name from the Constants file
+    var locationID = await Constants.clinicCodes[Constants.clinics[index]]; // uses the clinic Name as key to get the location ID
+    if(!Constants.slotTypes[slotType][1].includes(locationID)){
+      console.log("skipped this locaiton ID: " +locationID)
+      continue;
+    }
+    let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`; // Creates query from our data.
+    let data = await apiFetch(query); // returns JSON file from our query note: If server is busy we can get an error because of an HTML return.
+    // console.log(data); debugging purposes
+    // console.log("The amount of slots for " + Constants.clinics[index] +" is: " + data.slots_left); Debugging purposes
+    totalCount = totalCount + parseInt(data.slots_left); // we parseInt to get integer not sure if necessary will test with out
   }
 
-  // for (var clinic of Constants.clinics){
-  //   let locationID = Constants.clinicCodes[clinic];
-  //   let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`;
-  //   let data = await apiFetch(query);
-  //   console.log("The amount of slots for " + Constants.clinics[clinic] +" is: " + data.slots_left);
-  //   totalCount = totalCount + parseInt(data.slots_left);
-  // }
-  // Constants.clinics.forEach(element => {
-  //   let locationID = Constants.clinicCodes[element];
-  //   let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`
-  //   apiFetch(query).then(data => totalCount = totalCount + parseInt(data.slots_left))
-  // });
-  console.log("Test print")
-  console.log("The total count to return:" + totalCount)
+  console.log("The total count to return: " + totalCount)
   return totalCount;
   }

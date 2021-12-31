@@ -1,6 +1,8 @@
 import * as Constants from '../constants/index' // We important the Constants from the index and use Constants. to access the constants.
-import{apiFetch} from '../Services/getAPIData';
+import{apiFetch} from './getAPIData';
+import {RateLimit} from "async-sema";
 
+const limit = RateLimit(4)
 /**
  * This function uses the datainputs to create a URL to pass to the getAPI function. 
  * @param {*} dd Day of the month as 2 numeral string
@@ -10,7 +12,7 @@ import{apiFetch} from '../Services/getAPIData';
  * @param {*} slotType This will be the grouping used to look for appointments (5-11, 12+, Health care workers)
  * @returns The number of slots available.
  */
-export async function getTotalCount(dd, mm, yyyy, slotType){
+export async function getTotalCountByType(dd, mm, yyyy, slotType){
   let date = `${yyyy}-${mm}-${dd}T00:00:00.000-05:00`; // This date format is what is used in the API query
   let slot_type = Constants.slotTypes[slotType][0]; // This is the slot type
   var totalCount = 0;
@@ -22,10 +24,12 @@ export async function getTotalCount(dd, mm, yyyy, slotType){
     //var clinicName =Constants.clinics[index]; // Gets the clinic name from the Constants file
     var locationID = await Constants.clinicCodes[Constants.clinics[index]]; // uses the clinic Name as key to get the location ID
     if(!Constants.slotTypes[slotType][1].includes(locationID)){
-      console.log("skipped this locaiton ID: " +locationID)
+      //console.log("skipped this locaiton ID: " +locationID)
       continue;
     }
+   
     let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`; // Creates query from our data.
+    await limit()
     let data = await apiFetch(query); // returns JSON file from our query note: If server is busy we can get an error because of an HTML return.
     // console.log(data); debugging purposes
     
@@ -34,6 +38,5 @@ export async function getTotalCount(dd, mm, yyyy, slotType){
   }
 
   console.log("The total count to return: " + totalCount)
-  console.log(totalCount)
   return totalCount;
   }

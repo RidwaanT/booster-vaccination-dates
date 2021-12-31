@@ -63,5 +63,5 @@ export const clinics = [
 export const slotTypes = {
     '12 y/o plus': ["AGE12YEARSPLUS1ST2NDANDELIGIBLE3RDDOSEPOPULATIONSCOVID19VACCINE",['SJHW','HH', 'NPL', 'WL', 'MCHPRC', 'SCRC', 'PHMC', 'SH', 'RHL', 'CL', 'BMRC', 'MCEE', 'UH', 'UG', 'TCB', 'LMLC' ] ],
     '5-11 y/o': ["AGE511YEARSCOVID19VACCINE",['HH', 'SAMNSS', 'SWCSS', 'BCSS', 'NPL', 'WL', 'MCHPRC', 'SCRC', 'PHMC', 'SH', 'BMRC', 'UH', 'TCB', 'LMLC' ]],
-    "Healthcare Workers": ["COVID19", ['UH']],
+    "Healthcare Workers": ["COVID19", ['UH', 'UE']],
 }

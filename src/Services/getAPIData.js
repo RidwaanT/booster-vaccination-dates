@@ -4,18 +4,17 @@
  * @returns JSON object
  */
 export async function apiFetch(url){
-    let response = await fetch(url, {mode: 'cors'}); // Adding cors for testing base.
+    let response = await fetch(url); // Adding cors for testing base.
     if (!response.ok){ // If we get a non ok response we return the error
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     try{
       var data = await response.json(); //this will start the json response
-      console.log(url);
+      console.log("APIFetch() URL: "+url);
       //console.log('response data?', data)
     } catch(error) {
       console.log('High Traffic')
       console.log(url);
     } 
-    
-    return data;
+    return await data;
   }

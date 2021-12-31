@@ -12,10 +12,9 @@ import{apiFetch} from '../Services/getAPIData';
  */
 export async function getSlotCount(dd, mm, yyyy, location, slotType){
   let date = `${yyyy}-${mm}-${dd}T00:00:00.000-05:00`;
-  let locationID = Constants.clinicCodes[location];
-  let slot_type = Constants.slotTypes[slotType];
+  let locationID = await Constants.clinicCodes[location];
+  let slot_type = Constants.slotTypes[slotType][0];
   let query = `${Constants.URL}day=${date}&location_id=${locationID}&slot_type=${slot_type}&key=${Constants.KEY}`
-
-  let slotCount = apiFetch(query);
-  return slotCount;
+  let slotCount = await apiFetch(query);
+  return slotCount.slots_left;
   }

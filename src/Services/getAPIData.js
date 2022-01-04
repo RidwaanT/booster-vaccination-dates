@@ -10,7 +10,7 @@ export async function apiFetch(url){
     }
     try{
       var data = await response.json(); //this will start the json response
-      console.log("APIFetch() URL: "+url);
+      //console.log("APIFetch() URL: "+url);
       //console.log('response data?', data)
     } catch(error) {
       console.log('High Traffic')

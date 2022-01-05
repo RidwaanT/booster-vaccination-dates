@@ -8,13 +8,14 @@ import { getTotalCountByType } from '../Services/getTotalCountByType';
 export default function Availability(props) {
     var date = props.date.toDateString()
     var location = props.location
+    var type = props.type
     const [slotsInformation, setSlotsInformation] = useState("loading...");
     //const [isLoading, setIsLoading] =useState(true);
     useEffect(()=>{
         console.log("the props date is: " +props.date)
         // getSlotCount('07', '01', '2022', "SJHH-West 5th", "12 y/o plus").then(
         // data => setSlotsInformation(data));
-        getSlotCountForWeekByLocationandType(getDaysofWeek(props.date), location, "Healthcare Workers"  ).then(data => {setSlotsInformation(data)})
+        getSlotCountForWeekByLocationandType(getDaysofWeek(props.date), location, type  ).then(data => {setSlotsInformation(data)})
         // getTotalCount('07', '01', '2022', "Healthcare Workers").then(
         //     data => {setSlotsInformation(data);}
         // )

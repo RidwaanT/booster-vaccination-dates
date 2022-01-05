@@ -10,25 +10,47 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 function App() {
-  const[isSelected, setIsSelected] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const[isLocationSelected, setIsLocationSelected] = useState(false);
+  const[isTypeSelected, setIsTypeSelected] = useState(false);
+  const[isDateSelected, setIsDateSelected] = useState(false);
+  const [startDate, setStartDate] = useState();
   const [clinic, setClinic] = useState("select location");
+  const [type, setType] = useState("Select Type")
 
   const selectClinic = (selClinic) => {
     setClinic(selClinic.value)
-    setIsSelected(true)
+    setIsLocationSelected(true)
+    console.log("Selecting Clinic: " +clinic)
   }
-  console.log("start date is: " +startDate)
+
+  const selectType = (selType) => {
+    setType(selType.value)
+    setIsTypeSelected(true)
+    console.log(selType)
+  }
+
+  const selectDate = (selStartDate) => {
+    setStartDate(selStartDate)
+    setIsDateSelected(true)
+    console.log(startDate)
+  }
+
   return (
-    <div className="App">
-      <p>
+    <div>
+      <h1>
         Vaccination App
-      </p>
-      <ReactDatePicker selected={startDate} onChange={(date) => setStartDate(date)}></ReactDatePicker>
-      <Select options={Constants.dropdownClinics} onChange={(clinic) => selectClinic(clinic)}/>
-      {isSelected?
-        <Availability date={startDate} location={clinic}></Availability>:
-        <p>Select a location</p>
+      </h1>
+      <div className="Dropdowns">
+      <label htmlFor="date">Select Date</label><br></br>
+      <ReactDatePicker id='date' selected={startDate} onChange={(date) => selectDate(date)}></ReactDatePicker>
+      <label htmlFor='location'>Location</label><br></br>
+      <Select id='location' options={Constants.dropdownClinics} onChange={(clinic) => selectClinic(clinic)}/>
+      <label htmlFor='type'>Type</label><br></br>
+      <Select id='type' options={Constants.dropdownSlotTypes} onChange={(type) => selectType(type)}/>
+      </div>
+      {isLocationSelected & isTypeSelected & isDateSelected?
+        <Availability date={startDate} location={clinic} type={type}></Availability>:
+        <p>Select a location, Type and Date.</p>
       }
     </div>
      

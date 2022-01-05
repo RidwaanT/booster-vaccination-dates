@@ -91,3 +91,9 @@ export const dropdownClinics = [
     {value: 'Mountain Clinic (Limeridge Mall-2nd floor)', label: 'Mountain Clinic (Limeridge Mall-2nd floor)'},
 ]
 
+export const dropdownSlotTypes = [
+    {value: '12 y/o plus', label: '12 years old+'},
+    {value: '5-11 y/o', label: '5-11 year olds'},
+    {value: 'Healthcare Workers', label: 'Healthcare Workers'}
+]
+

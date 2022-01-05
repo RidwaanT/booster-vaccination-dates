@@ -10,8 +10,6 @@ export async function getSlotCountForWeekByLocationandType(days, location, slotT
         var count = await getSlotCount(days[i][2],days[i][1],days[i][0], location,"Healthcare Workers")
         counts.push(count) 
     }
-    
-    console.log("These are the counts for the week: " +counts);
     return counts;
 }
 

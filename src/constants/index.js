@@ -65,3 +65,29 @@ export const slotTypes = {
     '5-11 y/o': ["AGE511YEARSCOVID19VACCINE",['HH', 'SAMNSS', 'SWCSS', 'BCSS', 'NPL', 'WL', 'MCHPRC', 'SCRC', 'PHMC', 'SH', 'BMRC', 'UH', 'TCB', 'LMLC' ]],
     "Healthcare Workers": ["COVID19", ['UH', 'UE']],
 }
+
+export const dropdownClinics = [
+    { value: 'SJHH-West 5th', label: 'St. Josephs Healthcare-west 5th'},
+    {value: 'Mobile Clinic-Harry Howell', label: 'Mobile Clinic-Harry Howell'},
+    {value: 'Indigenous Clinic-Biindigen Hub(Former St.Helen’s School)', label: 'Indigenous Clinic-Biindigen Hub(Former St.Helen’s School)'},
+    {value: 'Sir Allan MacNab Secondary School', label: 'Sir Allan MacNab Secondary School'},
+    {value: 'Sir Winston Churchill Secondary School', label: 'Sir Winston Churchill Secondary School'},
+    {value: 'Bernie Custis Secondary School', label: 'Bernie Custis Secondary School'},
+    {value: 'Mobile Clinic-Norman Pinky Lewis', label: 'Mobile Clinic-Norman Pinky Lewis'},
+    {value: 'Mobile Clinic-Waterdown Library', label: 'Mobile Clinic-Waterdown Library'},
+    {value: 'Mobile Clinic-Huntington Park Rec Centre', label: 'Mobile Clinic-Huntington Park Rec Centre'},
+    {value: 'Mobile Clinic-Stoney Creek Rec Centre', label: 'Mobile Clinic-Stoney Creek Rec Centre'},
+    {value: 'Mobile Clinic-Public Health Mountain Clinic', label: 'Mobile Clinic-Public Health Mountain Clinic'},
+    {value: 'Mobile Clinic-Sackville Hill', label: 'Mobile Clinic-Sackville Hill'},
+    {value: 'Mobile Clinic-RedHill Library', label: 'Mobile Clinic-RedHill Library'},
+    {value: 'Mobile Clinic-Central Library', label: 'Mobile Clinic-Central Library'},
+    {value: 'Mobile Clinic-Bernie Morelli Rec Centre', label: 'Mobile Clinic-Bernie Morelli Rec Centre'},
+    {value: 'Mobile Clinic-East End Public Health Clinic', label: 'Mobile Clinic-East End Public Health Clinic'},
+    {value: 'Mobile Clinic-Bennetto Recreation Centre', label: 'Mobile Clinic-Bennetto Recreation Centre'},
+    {value: 'Mobile Clinic-Barton Library', label: 'Mobile Clinic-Barton Library'},
+    {value: 'West End Clinic-Healthcare Workers ONLY', label: 'West End Clinic-Healthcare Workers ONLY'},
+    {value: 'The Centre on Barton', label: 'The Centre on Barton'},
+    {value: 'David Braley Health Sciences Centre', label: 'David Braley Health Sciences Centre'},
+    {value: 'Mountain Clinic (Limeridge Mall-2nd floor)', label: 'Mountain Clinic (Limeridge Mall-2nd floor)'},
+]
+

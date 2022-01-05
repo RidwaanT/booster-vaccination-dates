@@ -7,13 +7,14 @@ import { getTotalCountByType } from '../Services/getTotalCountByType';
 
 export default function Availability(props) {
     var date = props.date.toDateString()
+    var location = props.location
     const [slotsInformation, setSlotsInformation] = useState("loading...");
     //const [isLoading, setIsLoading] =useState(true);
     useEffect(()=>{
         console.log("the props date is: " +props.date)
         // getSlotCount('07', '01', '2022', "SJHH-West 5th", "12 y/o plus").then(
         // data => setSlotsInformation(data));
-        getSlotCountForWeekByLocationandType(getDaysofWeek(props.date), "Mobile Clinic-Bennetto Recreation Centre", "Healthcare Workers"  ).then(data => {setSlotsInformation(data)})
+        getSlotCountForWeekByLocationandType(getDaysofWeek(props.date), location, "Healthcare Workers"  ).then(data => {setSlotsInformation(data)})
         // getTotalCount('07', '01', '2022', "Healthcare Workers").then(
         //     data => {setSlotsInformation(data);}
         // )
@@ -46,19 +47,9 @@ export default function Availability(props) {
                         <td className="tg-0lax">{slotsInformation[4]}</td>
                         <td className="tg-0lax">{slotsInformation[5]}</td>
                         <td className="tg-0lax">{slotsInformation[6]}</td>
-                        
                     </tr>
                 </tbody>
             </table>
-            {/* <ul>
-                <li>Count for Day 1 is: </li>
-                <li>Count for Day 2 is: </li>
-                <li>Count for day 3 is: </li>
-                <li>Count for Day 4 is: </li>
-                <li>Count for Day 5 is: </li>
-                <li>Count for day 6 is: </li>
-                <li>Count for day 7 is: </li>
-            </ul> */}
         </div>
     )
 }

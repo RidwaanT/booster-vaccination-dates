@@ -12,18 +12,17 @@ export default function Availability(props) {
     const [slotsInformation, setSlotsInformation] = useState("loading...");
     //const [isLoading, setIsLoading] =useState(true);
     useEffect(()=>{
-        console.log("the props date is: " +props.date)
         // getSlotCount('07', '01', '2022', "SJHH-West 5th", "12 y/o plus").then(
         // data => setSlotsInformation(data));
         getSlotCountForWeekByLocationandType(getDaysofWeek(props.date), location, type  ).then(data => {setSlotsInformation(data)})
         // getTotalCount('07', '01', '2022', "Healthcare Workers").then(
         //     data => {setSlotsInformation(data);}
         // )
-    }, [])
+    }, [props.date, location, type])
     
     return (
         <div>
-            <h2> Slots Information: </h2>
+            <h2> Appointments Information: </h2>
             <table className="tg">
                 <thead>
                     <tr>
@@ -51,6 +50,7 @@ export default function Availability(props) {
                     </tr>
                 </tbody>
             </table>
+            <p>Location is: {location}, type is: {type} </p>
         </div>
     )
 }
@@ -62,3 +62,4 @@ function prettyPrintDate(newDate, daysAdded=0){
     let printedDay = addedDate.substring(0,addedDate.length-5)
     return printedDay;
 }
+
